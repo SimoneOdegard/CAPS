@@ -2,8 +2,10 @@
 
 ## Author
 Simone Odegard
-[github actions]()
-[deployment](http://google.com)
+
+## Important Links
+- [github actions](https://github.com/SimoneOdegard/CAPS/actions/new) - coming soon!
+- [deployment](http://google.com)
 
 ## Repo Name
 CAPS
@@ -25,3 +27,4 @@ Tests
 ![UML](./assets/uml.png)
 
 ## Pull Requests
+[PR 1](https://github.com/SimoneOdegard/CAPS/pull/1)
