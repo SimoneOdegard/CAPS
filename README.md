@@ -28,4 +28,4 @@ Tests
 
 ## Pull Requests
 - [PR 1](https://github.com/SimoneOdegard/CAPS/pull/1)
-- [PR 2]() - coming soon!
+- [PR 2](https://github.com/SimoneOdegard/CAPS/pull/2)
