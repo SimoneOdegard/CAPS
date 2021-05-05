@@ -1,8 +1,10 @@
 'use strict';
 
-const events = require('../../events.js');
 require('dotenv').config();
 const faker = require('faker');
+const io = require('socket.io-client');
+let HOST = process.env.HOST || 'http://localhost:3000';
+const caps = io.connect(`${HOST}/caps`);
 
 setInterval(() => {
   let newOrder = {
@@ -12,9 +14,9 @@ setInterval(() => {
     address: faker.address.city(),
   }
 
-  events.emit('newOrder', newOrder);
+  caps.emit('newOrder', newOrder);
 }, 5000);
 
-events.on('delivered', payload => {
-  console.log('Your order was delivered! Thank you for your order.');
+caps.on('delivered', payload => {
+  console.log(`Thank you for delivering`, payload.orderID);
 });

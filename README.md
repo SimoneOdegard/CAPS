@@ -5,7 +5,7 @@ Simone Odegard
 
 ## Important Links
 - [github actions](https://github.com/SimoneOdegard/CAPS/actions/new) - coming soon!
-- [deployment](http://google.com)
+- [deployment](http://google.com) - coming soon!
 
 ## Repo Name
 CAPS
@@ -24,7 +24,8 @@ Tests
 - ```npm run test```
 
 ## UML Diagram
-![UML](./assets/uml.png)
+![UML](./assets/uml2.JPG)
 
 ## Pull Requests
-[PR 1](https://github.com/SimoneOdegard/CAPS/pull/1)
+- [PR 1](https://github.com/SimoneOdegard/CAPS/pull/1)
+- [PR 2]() - coming soon!

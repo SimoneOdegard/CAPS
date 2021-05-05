@@ -1,28 +1,32 @@
 'use strict';
 
-const events = require('./events.js');
+const io = require('socket.io')(3000);
+const caps = io.of('/caps');
 
-require('./modules/driver/driver.js');
-require('./modules/vendor/vendor.js');
+caps.on('connection', socket => {
 
-events.on('newOrder', payload => {
-  console.log('EVENT:', {
-    event: 'pickup',
-    time: new Date,
-    payload});
-  events.emit('pickup', payload)
-});
+  socket.on('newOrder', payload => {
+    console.log('EVENT:', {
+      event: 'pickup', 
+      time: new Date,
+      payload});
+    caps.emit('pickup', payload)
+  });
+  
+  socket.on('inTransit', payload => {
+    console.log('EVENT:', {
+      event: 'inTransit',
+      time: new Date,
+      payload});
+    caps.emit('inTransit', payload)
+  });
+  
+  socket.on('delivered', payload => {
+    console.log('EVENT:', {
+      event: 'delivered',
+      time: new Date,
+      payload});
+    caps.emit('delivered', payload)
+  });
 
-events.on('inTransit', payload => {
-  console.log('EVENT:', {
-    event: 'inTransit',
-    time: new Date,
-    payload});
-});
-
-events.on('delivered', payload => {
-  console.log('EVENT:', {
-    event: 'delivered',
-    time: new Date,
-    payload});
-});
+})

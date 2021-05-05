@@ -1,21 +1,21 @@
 'use strict';
 
-const events = require('../../events.js');
+const io = require('socket.io-client');
+let HOST = process.env.HOST || 'http://localhost:3000';
+const caps = io.connect(`${HOST}/caps`);
 
-events.on('pickup', payload => {
+caps.on('pickup', payload => {
   setTimeout(() => {
     console.log(`DRIVER: picked up order number: ${payload.orderID}`)
   }, 1000);
 
-  events.emit('inTransit', payload);
+  caps.emit('inTransit', payload);
 });
 
-events.on('inTransit', payload => {
+caps.on('inTransit', payload => {
   setTimeout(() => {
     console.log(`DRIVER: delivered order number: ${payload.orderID}`)
   }, 3000);
 
-  events.emit('delivered', payload)
+  caps.emit('delivered', payload);
 });
-
-
