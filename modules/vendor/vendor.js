@@ -1,22 +1,26 @@
 'use strict';
 
-require('dotenv').config();
+// require('dotenv').config();
 const faker = require('faker');
 const io = require('socket.io-client');
 let HOST = process.env.HOST || 'http://localhost:3000';
-const caps = io.connect(`${HOST}/caps`);
+const client = io.connect(`${HOST}/caps`);
+const store = 'Kawaii Flower Shop';
+
+client.emit('join', store);
 
 setInterval(() => {
   let newOrder = {
-    store: process.env.STORENAME,
+    store: store,
     orderID: faker.datatype.uuid(),
     customer: faker.name.findName(),
     address: faker.address.city(),
   }
 
-  caps.emit('newOrder', newOrder);
+  // client.emit('newOrder', newOrder);
+  client.emit('pickup', newOrder);
 }, 5000);
 
-caps.on('delivered', payload => {
+client.on('delivered', payload => {
   console.log(`Thank you for delivering`, payload.orderID);
 });
