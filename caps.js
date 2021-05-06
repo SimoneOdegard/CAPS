@@ -5,7 +5,13 @@ const caps = io.of('/caps');
 
 caps.on('connection', socket => {
 
-  socket.on('newOrder', payload => {
+  socket.on('join', room => {
+    console.log('storeRoom:', room);
+    socket.join(room);
+  })
+
+  // socket.on('newOrder', payload => {
+    socket.on('pickup', payload => {
     console.log('EVENT:', {
       event: 'pickup', 
       time: new Date,
@@ -18,7 +24,7 @@ caps.on('connection', socket => {
       event: 'inTransit',
       time: new Date,
       payload});
-    caps.emit('inTransit', payload)
+    caps.to(payload.store).emit('inTransit', payload)
   });
   
   socket.on('delivered', payload => {
@@ -26,7 +32,7 @@ caps.on('connection', socket => {
       event: 'delivered',
       time: new Date,
       payload});
-    caps.emit('delivered', payload)
+    caps.to(payload.store).emit('delivered', payload)
   });
 
 })
