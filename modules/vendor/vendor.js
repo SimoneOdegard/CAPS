@@ -7,7 +7,14 @@ let HOST = process.env.HOST || 'http://localhost:3000';
 const client = io.connect(`${HOST}/caps`);
 const store = 'Kawaii Flower Shop';
 
+const vendor = io.connect('http://localhost:3001/vendor');
+
+const message = process.argv.splice(2)[0];
+vendor.emit('deliveredMessage', message);
+
 client.emit('join', store);
+
+vendor.emit('getAll');
 
 setInterval(() => {
   let newOrder = {
@@ -24,3 +31,8 @@ setInterval(() => {
 client.on('delivered', payload => {
   console.log(`Thank you for delivering`, payload.orderID);
 });
+
+vendor.on('message', message => {
+  console.log('received message:', message.payload);
+  vendor.emit('recieved', message);
+})

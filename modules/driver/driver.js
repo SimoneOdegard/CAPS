@@ -4,6 +4,7 @@ const io = require('socket.io-client');
 let HOST = process.env.HOST || 'http://localhost:3000';
 const client = io.connect(`${HOST}/caps`);
 const store = 'Kawaii Flower Shop';
+
 client.emit('join', store);
 
 client.on('pickup', payload => {
