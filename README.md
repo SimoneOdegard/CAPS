@@ -18,7 +18,7 @@ events
 - ```PORT``` - Store name
 
 Running the app
-- ```npm i dotenv faker```
+- ```npm i dotenv faker cors express socket.io socket.io-client uuid```
 
 Tests
 - ```npm run test```
@@ -30,3 +30,4 @@ Tests
 - [PR 1](https://github.com/SimoneOdegard/CAPS/pull/1)
 - [PR 2](https://github.com/SimoneOdegard/CAPS/pull/2)
 - [PR 3](https://github.com/SimoneOdegard/CAPS/pull/4)
+- [PR 4](https://github.com/SimoneOdegard/CAPS/pull/6)

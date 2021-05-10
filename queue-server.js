@@ -12,7 +12,7 @@ const vendor = io.of('/vendor');
 
 vendor.on('connection', socket => {
 
-  socket.on('deliveredMessage', payload => {
+  socket.on('delivered', payload => {
     let id = uuid();
     queue.messages[id] = payload;
     console.log('received message', queue);
@@ -24,7 +24,7 @@ vendor.on('connection', socket => {
 
   socket.on('getAll', () => {
 
-    console.log('yyayayyayayayaaaaaaaaa');
+    console.log('===GET ALL MESSAGES===');
 
     Object.keys(queue.messages).forEach(id => {
       vendor.emit('message', { id, payload: queue.messages[id] });
